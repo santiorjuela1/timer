@@ -81,10 +81,10 @@ public class Menu extends JFrame implements ActionListener{
 			TABATA tabataWindow = new TABATA(this);
 		}
 		else if(e.getSource() == btnAMRAP) {
-			TABATA tabataWindow = new TABATA(this);
+			AMRAP amrapWindow = new AMRAP(this);
 		}
 		else if(e.getSource() == btnEMOW) {
-			TABATA tabataWindow = new TABATA(this);
+			EMOW emowWindow = new EMOW(this);
 		}
 		
 	}
