@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public abstract class GeneralWindow extends JFrame implements ActionListener{
@@ -43,7 +44,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	goBack.setFocusable(false);
 	goBack.setForeground(Color.white);
 	goBack.setBackground(Color.black);
-	goBack.setBorder(new LineBorder(Color.black));
+	goBack.setBorder(new LineBorder(Color.white));
 	goBack.addActionListener(this);
 	
 	
@@ -59,6 +60,31 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 			this.dispose();
 		}
 		
+	}
+	
+	public void setFeaturesLabel(JLabel label) {
+		label.setFont(new Font("MV Boli", Font.BOLD, 30));
+		label.setFocusable(false);
+		label.setForeground(Color.white);
+		//label.setBorder(new LineBorder(Color.black));
+	}
+	
+	public void setFeaturesTextField (JTextField field) {
+		field.setFont(new Font("MV Boli", Font.BOLD, 30));
+		field.setFocusable(false);
+		field.setForeground(Color.white);
+		field.setBorder(new LineBorder(Color.white));
+		field.setBackground(Color.black);
+		field.setHorizontalAlignment(JTextField.CENTER);
+	}
+	
+	public void setFeaturesButton(JButton button) {
+		button.setFont(new Font("MV Boli", Font.BOLD, 30));
+		button.setFocusable(false);
+		button.setForeground(Color.white);
+		button.setBorder(new LineBorder(Color.white));
+		button.setBackground(Color.black);
+		button.setHorizontalAlignment(JTextField.CENTER);
 	}
 }
 	
