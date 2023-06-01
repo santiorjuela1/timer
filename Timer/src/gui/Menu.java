@@ -76,15 +76,24 @@ public class Menu extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnClock) {
 			Clock clock = new Clock(this);
+			
+			Thread hiloActualizador = new Thread(clock);
+			hiloActualizador.start();
 		}
 		else if(e.getSource() == btnTABATA) {
 			TABATA tabataWindow = new TABATA(this);
+			
+			//Thread hizoActualizador = new Thread(tabataWindow);
+			
 		}
 		else if(e.getSource() == btnAMRAP) {
 			AMRAP amrapWindow = new AMRAP(this);
+			
+			//Thread hiloActualizador = new Thread(amrapWindow);
+			//hiloActualizador.start();
 		}
 		else if(e.getSource() == btnEMOW) {
-			EMOW emowWindow = new EMOW(this);
+			EMOM emowWindow = new EMOM(this);
 		}
 		
 	}

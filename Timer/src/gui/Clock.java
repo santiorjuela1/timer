@@ -8,19 +8,23 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
-public class Clock extends GeneralWindow{
+public class Clock extends GeneralWindow implements Runnable{
 	
 	// Attributes
 	JLabel lblTime = new JLabel();
 	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-	LocalDateTime currentTime = LocalDateTime.now();
-	String time;
+	TimeUnit time = TimeUnit.SECONDS;
+	Long timeToSleep = 1L;
+	String strTime;
+	
 	
 	
 	Clock(JFrame mainFrame){
@@ -32,7 +36,7 @@ public class Clock extends GeneralWindow{
 		lblTime.setFont(new Font("MV Boli", Font.BOLD, 40));
 		lblTime.setBounds(125, 50, 500, 500);		
 		
-		currentTime();
+	
 		this.add(lblTime);
 	}
 	
@@ -42,16 +46,28 @@ public class Clock extends GeneralWindow{
 		super.actionPerformed(e);
 	}
 	
-	public void currentTime() {
-		//while(true) {
-			this.time = dtf.format(currentTime);
-			this.lblTime.setText(time);
-		/*	try {
+	@Override
+	public void run() {
+		while(true) {
+			LocalDateTime currentTime = LocalDateTime.now();
+			this.strTime = dtf.format(currentTime);
+			SwingUtilities.invokeLater(() -> {
+                this.lblTime.setText(strTime);
+            });
+			try {
 				Thread.sleep(1000);
-				
-			} catch (InterruptedException e){
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
+			
 		}
+		
+		
+		
 	}
+
+
+	}	
+
 

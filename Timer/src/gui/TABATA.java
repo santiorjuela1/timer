@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class TABATA extends GeneralWindow{
+public class TABATA extends GeneralWindow implements Runnable{
 	
 	// Attributes
 	
@@ -94,6 +94,13 @@ public class TABATA extends GeneralWindow{
 	public void actionPerformed(ActionEvent e) {
 		// Doing/invoking the method of the superclass so it takes care 
 		super.actionPerformed(e);
+	}
+
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

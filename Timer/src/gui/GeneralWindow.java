@@ -71,11 +71,13 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	
 	public void setFeaturesTextField (JTextField field) {
 		field.setFont(new Font("MV Boli", Font.BOLD, 30));
-		field.setFocusable(false);
 		field.setForeground(Color.white);
 		field.setBorder(new LineBorder(Color.white));
 		field.setBackground(Color.black);
 		field.setHorizontalAlignment(JTextField.CENTER);
+		field.setEditable(true);
+		field.setEnabled(true);
+		field.getText();
 	}
 	
 	public void setFeaturesButton(JButton button) {
@@ -85,6 +87,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 		button.setBorder(new LineBorder(Color.white));
 		button.setBackground(Color.black);
 		button.setHorizontalAlignment(JTextField.CENTER);
+		button.addActionListener(this);
 	}
 }
 	
