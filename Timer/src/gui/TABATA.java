@@ -34,8 +34,6 @@ public class TABATA extends GeneralWindow implements Runnable{
 	JLabel lblWorkDisplay = new JLabel();
 	JLabel lblSecondsRestDisplay = new JLabel();
 	
-	JLabel lblGetReady = new JLabel("GET READY!");	
-	JLabel lblSecondsReady = new JLabel();
 	// TextFields
 	JTextField tfRounds = new JTextField("10");
 	JTextField tfSecondsWork = new JTextField("20");
@@ -114,13 +112,6 @@ public class TABATA extends GeneralWindow implements Runnable{
 		super.setFeaturesSpecialLabels(lblSecondsRestDisplay);
 		this.lblSecondsRestDisplay.setBounds(350, 100, 150, 150);
 		
-		super.setFeaturesLabel(lblGetReady);
-		this.lblGetReady.setBounds(300, 0, 200, 200);
-		
-		super.setFeaturesSpecialLabels(lblSecondsReady);
-		this.lblSecondsReady.setBounds(350, 100, 200, 200);
-		
-		
 		
 		this.add(btnStart);
 		this.add(lblSecondsRest);
@@ -138,6 +129,14 @@ public class TABATA extends GeneralWindow implements Runnable{
 	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		try {
+			beep = new Beep();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		// Doing/invoking the method of the superclass so it takes care 
 		if(e.getSource() == super.goBack) {
 			super.actionPerformed(e);
@@ -151,16 +150,9 @@ public class TABATA extends GeneralWindow implements Runnable{
 			/* We remove all of the components */
 			super.removeComponents();
 			
-			this.add(lblSecondsReady);
-			this.add(lblGetReady);
-			
-			try {
-				beep = new Beep();
-			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
+			/* We add the labels related to the getready */
+			this.add(super.lblSecondsReady);
+			this.add(super.lblGetReady);	
 			
 			/*this.add(lblRoundsDisplay);
 			this.add(lblWorkDisplay);
@@ -175,7 +167,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	public void run() {
 		
 		
-		super.gettingReadyTimer(lblSecondsReady);
+		super.gettingReadyTimer(super.lblSecondsReady);
 		super.removeComponents();
 		
 		

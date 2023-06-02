@@ -26,6 +26,8 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
 	JFrame mainFrame;
 	Beep beep;
+	JLabel lblGetReady = new JLabel("GET READY!");	
+	JLabel lblSecondsReady = new JLabel();
 
 	GeneralWindow(JFrame frame){
 		this.mainFrame = frame;
@@ -53,6 +55,12 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	goBack.setBackground(Color.black);
 	goBack.setBorder(new LineBorder(Color.white));
 	goBack.addActionListener(this);
+	
+	this.setFeaturesLabel(lblGetReady);
+	this.lblGetReady.setBounds(275, 0, 200, 200);
+	
+	this.setFeaturesSpecialLabels(lblSecondsReady);
+	this.lblSecondsReady.setBounds(350, 100, 200, 200);
 	
 	
 	this.add(goBack);
@@ -116,7 +124,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	
 	public void gettingReadyTimer(JLabel label) {
 		String valueLbl;
-		for(Integer i = 10; i > 0; i--) {
+		for(Integer i = 9; i > 0; i--) {
 			if(i < 4) {
 				try {
 					beep = new Beep();
