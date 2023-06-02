@@ -6,7 +6,10 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,12 +17,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import sounds.Beep;
+
 public abstract class GeneralWindow extends JFrame implements ActionListener{
 	// Attributes
 	JButton goBack;
 	JLabel titulo;
 	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
 	JFrame mainFrame;
+	Beep beep;
 
 	GeneralWindow(JFrame frame){
 		this.mainFrame = frame;
@@ -106,6 +112,29 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 		label.setFont(new Font("MV Boli", Font.BOLD, 70));
 		label.setFocusable(false);
 		label.setForeground(Color.red);
+	}
+	
+	public void gettingReadyTimer(JLabel label) {
+		String valueLbl;
+		for(Integer i = 10; i > 0; i--) {
+			if(i < 4) {
+				try {
+					beep = new Beep();
+					beep.play();
+				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+					e.printStackTrace();
+				}
+			}
+			valueLbl = i.toString();
+			label.setText(valueLbl);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		label.setText("");
 	}
 }
 	

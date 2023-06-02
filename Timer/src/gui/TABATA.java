@@ -34,6 +34,8 @@ public class TABATA extends GeneralWindow implements Runnable{
 	JLabel lblWorkDisplay = new JLabel();
 	JLabel lblSecondsRestDisplay = new JLabel();
 	
+	JLabel lblGetReady = new JLabel("GET READY!");	
+	JLabel lblSecondsReady = new JLabel();
 	// TextFields
 	JTextField tfRounds = new JTextField("10");
 	JTextField tfSecondsWork = new JTextField("20");
@@ -112,6 +114,12 @@ public class TABATA extends GeneralWindow implements Runnable{
 		super.setFeaturesSpecialLabels(lblSecondsRestDisplay);
 		this.lblSecondsRestDisplay.setBounds(350, 100, 150, 150);
 		
+		super.setFeaturesLabel(lblGetReady);
+		this.lblGetReady.setBounds(300, 0, 200, 200);
+		
+		super.setFeaturesSpecialLabels(lblSecondsReady);
+		this.lblSecondsReady.setBounds(350, 100, 200, 200);
+		
 		
 		
 		this.add(btnStart);
@@ -143,9 +151,8 @@ public class TABATA extends GeneralWindow implements Runnable{
 			/* We remove all of the components */
 			super.removeComponents();
 			
-			this.add(lblRoundsDisplay);
-			this.add(lblWorkDisplay);
-			this.add(lblSecondsRestDisplay);		
+			this.add(lblSecondsReady);
+			this.add(lblGetReady);
 			
 			try {
 				beep = new Beep();
@@ -154,6 +161,11 @@ public class TABATA extends GeneralWindow implements Runnable{
 				e1.printStackTrace();
 			}
 			
+			
+			/*this.add(lblRoundsDisplay);
+			this.add(lblWorkDisplay);
+			this.add(lblSecondsRestDisplay);	*/	
+			
 			actualizador.start();
 		}
 	}
@@ -161,6 +173,16 @@ public class TABATA extends GeneralWindow implements Runnable{
 
 	@Override
 	public void run() {
+		
+		
+		super.gettingReadyTimer(lblSecondsReady);
+		super.removeComponents();
+		
+		
+		this.add(lblRoundsDisplay);
+		this.add(lblWorkDisplay);
+		this.add(lblSecondsRestDisplay);
+		
 		for(Integer i = 1; i <= this.intRounds; i++) {
 			
 			this.strRounds = i.toString();
@@ -168,6 +190,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 			
 			// INNER LOOP SECONDS OF WORK
 			for(Integer j = this.intSecondsWork; j > 0; j--) {
+				this.lblWork.setText("WORK");
 				this.add(lblWork);
 				this.lblWork.setBounds(350, 0, 150, 150);
 				
@@ -180,6 +203,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 					}
 				}
 					
+				/* Assigning seconds to the label*/ 
 				this.strSecondsWork = j.toString();
 	            this.lblWorkDisplay.setText(strSecondsWork);
 	           
@@ -194,9 +218,12 @@ public class TABATA extends GeneralWindow implements Runnable{
 			this.lblWorkDisplay.setText("");
 			// INNER LOOP FOR REST
 			for(Integer k = this.intSecondsRest; k > 0; k--) {
-				this.add(lblSecondsRest);
-				this.lblSecondsRest.setBounds(350, 0, 150, 150);
+				/* Setting the features of the labels above the seconds*/
+				this.lblRest.setText("REST");
+				this.lblRest.setBounds(350, 0, 150, 150);
+				this.add(lblRest);
 				
+				/* Setting the sounds when the lable is lower than 4 */
 				if(k < 4 && k != 0) {
 					try {
 						beep = new Beep();
@@ -207,6 +234,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 					
 				}
 				
+				/* Display of the seconds of rest */ 
 				this.strSecondsRest = k.toString();
 		        this.lblSecondsRestDisplay.setText(strSecondsRest);
 		           
@@ -216,8 +244,9 @@ public class TABATA extends GeneralWindow implements Runnable{
 					e.printStackTrace();
 				}	
 			}
+			/* We set these to empty so that the next round can be displayed */ 
 			 this.lblSecondsRestDisplay.setText("");
-			 this.lblSecondsRest.setText("");
+			 this.lblRest.setText("");
 	}
 }
 	
