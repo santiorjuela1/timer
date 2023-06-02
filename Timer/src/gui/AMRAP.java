@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import sounds.Beep;
+import threads.MyThread;
 
 public class AMRAP extends GeneralWindow implements Runnable{
 	
@@ -26,6 +27,7 @@ public class AMRAP extends GeneralWindow implements Runnable{
 	JButton btnStart = new JButton("START");
 	String strMinutes;
 	Thread actualizador = new Thread(this);
+	//MyThread thread = new MyThread();
 	
 
 	public AMRAP(JFrame frame) {
@@ -76,10 +78,12 @@ public class AMRAP extends GeneralWindow implements Runnable{
 				this.lblTime.setText("INVALID");
 			}
 			else {
+				
 			// Desabilitamos el textfield y el boton
 			this.tfMinutes.setEnabled(false);
 			this.btnStart.setEnabled(false);
 			
+
 			// Ejecuto el metodo run
 			actualizador.start();
 			}

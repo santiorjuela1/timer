@@ -27,7 +27,13 @@ public class EMOM extends GeneralWindow implements Runnable{
 	JTextField tfSecondsRest = new JTextField("");
 	JButton btnStart = new JButton("START");
 	
-	Thread actualizador = new Thread();
+	String strMinutes;
+	String strSeconds;
+	String strRounds;
+	String strSecondsRest;
+	
+	
+	Thread actualizador = new Thread(this);
 
 	public EMOM(JFrame frame){
 		super(frame);
@@ -108,14 +114,15 @@ public class EMOM extends GeneralWindow implements Runnable{
 			super.actionPerformed(e);
 		}
 		else if(e.getSource() == this.btnStart){
-			System.out.println("hola mundo");
+			
 		}
 	}
 
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 

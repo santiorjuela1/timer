@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -88,6 +89,23 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 		button.setBackground(Color.black);
 		button.setHorizontalAlignment(JTextField.CENTER);
 		button.addActionListener(this);
+	}
+	
+	public void removeComponents() {
+		Component[] components = getContentPane().getComponents();
+        for (Component component : components) {
+            if (component != this.goBack) {
+                getContentPane().remove(component);
+            }
+        }
+        getContentPane().setBackground(getContentPane().getBackground());
+        repaint();
+	}
+	
+	public void setFeaturesSpecialLabels(JLabel label) {
+		label.setFont(new Font("MV Boli", Font.BOLD, 70));
+		label.setFocusable(false);
+		label.setForeground(Color.red);
 	}
 }
 	
