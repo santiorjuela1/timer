@@ -137,7 +137,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 			label.setText(valueLbl);
 			
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

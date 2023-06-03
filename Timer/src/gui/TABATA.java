@@ -154,10 +154,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 			this.add(super.lblSecondsReady);
 			this.add(super.lblGetReady);	
 			
-			/*this.add(lblRoundsDisplay);
-			this.add(lblWorkDisplay);
-			this.add(lblSecondsRestDisplay);	*/	
-			
+			/* we start the run method */
 			actualizador.start();
 		}
 	}
@@ -200,7 +197,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	            this.lblWorkDisplay.setText(strSecondsWork);
 	           
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	
@@ -223,7 +220,6 @@ public class TABATA extends GeneralWindow implements Runnable{
 					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 						e.printStackTrace();
 					}
-					
 				}
 				
 				/* Display of the seconds of rest */ 
@@ -231,7 +227,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 		        this.lblSecondsRestDisplay.setText(strSecondsRest);
 		           
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	
@@ -239,6 +235,14 @@ public class TABATA extends GeneralWindow implements Runnable{
 			/* We set these to empty so that the next round can be displayed */ 
 			 this.lblSecondsRestDisplay.setText("");
 			 this.lblRest.setText("");
+			 
+			 if(i == this.intRounds) {
+					super.removeComponents();
+					JLabel lblDone = new JLabel("DONE");
+					lblDone.setBounds(210, 200, 300,300);
+					lblDone.setFont(new Font("MV Boli", Font.BOLD, 100));
+					this.add(lblDone);
+					}
 	}
 }
 	
