@@ -130,17 +130,11 @@ public class TABATA extends GeneralWindow implements Runnable{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		try {
-			beep = new Beep();
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
 		// Doing/invoking the method of the superclass so it takes care 
 		if(e.getSource() == super.goBack) {
 			super.actionPerformed(e);
-				beep.clip.stop();
+				super.beep.clip.stop();
+				super.beep.close();
 				actualizador.stop();
 		}
 		else if(e.getSource() == this.btnStart) {
@@ -184,12 +178,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 				this.lblWork.setBounds(350, 0, 150, 150);
 				
 				if(j < 4 && j != 0) {	
-					try {
-						beep = new Beep();
-						beep.play();
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-						e.printStackTrace();
-					}
+					super.beep.play();
 				}
 					
 				/* Assigning seconds to the label*/ 
@@ -197,7 +186,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	            this.lblWorkDisplay.setText(strSecondsWork);
 	           
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	
@@ -214,12 +203,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 				
 				/* Setting the sounds when the lable is lower than 4 */
 				if(k < 4 && k != 0) {
-					try {
-						beep = new Beep();
-						beep.play();
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-						e.printStackTrace();
-					}
+					super.beep.play();
 				}
 				
 				/* Display of the seconds of rest */ 
@@ -227,7 +211,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 		        this.lblSecondsRestDisplay.setText(strSecondsRest);
 		           
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	

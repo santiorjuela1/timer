@@ -25,7 +25,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	JLabel titulo;
 	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
 	JFrame mainFrame;
-	Beep beep;
+	Beep beep = Beep.getInstance();
 	JLabel lblGetReady = new JLabel("GET READY!");	
 	JLabel lblSecondsReady = new JLabel();
 
@@ -125,19 +125,15 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	public void gettingReadyTimer(JLabel label) {
 		String valueLbl;
 		for(Integer i = 9; i > 0; i--) {
-			if(i < 4) {
-				try {
-					beep = new Beep();
-					beep.play();
-				} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-					e.printStackTrace();
-				}
-			}
+			if (i < 4 && !beep.clip.isRunning()) {
+		        beep.play();
+		    }
+			
 			valueLbl = i.toString();
 			label.setText(valueLbl);
 			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

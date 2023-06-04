@@ -15,7 +15,7 @@ import gui.GeneralWindow;
 import sounds.Beep;
 
 public class MyThread extends Thread {
-    private  Integer wait = 7;
+   /* private  Integer wait = 7;
     public JFrame frame;
     AMRAP amrap = new AMRAP(frame);
 
@@ -55,5 +55,5 @@ public class MyThread extends Thread {
         label.setFocusable(false);
         label.setForeground(Color.white);
         // label.setBorder(new LineBorder(Color.black));
-    }
+    }*/
 }

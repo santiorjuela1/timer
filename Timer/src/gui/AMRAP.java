@@ -65,17 +65,10 @@ public class AMRAP extends GeneralWindow implements Runnable{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-			beep = new Beep();
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
 		// Doing/invoking the method of the superclass so it takes care 
 		if(e.getSource() == super.goBack) {
 			super.actionPerformed(e);
-			beep.clip.stop();
+			super.beep.clip.close();
 			actualizador.stop();
 		}
 		
@@ -143,12 +136,7 @@ public class AMRAP extends GeneralWindow implements Runnable{
 			        });
 			}
 			else if (segundos <= 3) {
-		            try {
-		                Beep beep = new Beep();
-		                beep.play(); 
-		            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-		                e.printStackTrace(); 
-		            }
+				super.beep.play(); 
 		        }
 			}
 		

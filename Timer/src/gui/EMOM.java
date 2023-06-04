@@ -146,18 +146,11 @@ public class EMOM extends GeneralWindow implements Runnable{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		/* We create an instance of the Beep class so that when the user leaves the app the beep stops*/
-		try {
-			beep = new Beep();
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		/*  In case user uses the goBack button the perform the superclass function*/
 		if(e.getSource() == super.goBack) {
 			super.actionPerformed(e);
-			beep.clip.stop();
+			super.beep.clip.stop();
 			actualizador.stop();
 		}
 		else if(e.getSource() == this.btnStart){
@@ -200,12 +193,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 				this.lblWorkDisplay.setBounds(350, 0, 150, 150);
 				
 				if(j < 4) {	
-					try {
-						beep = new Beep();
-						beep.play();
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-						e.printStackTrace();
-					}
+					beep.play();
 				}
 				
 				this.strSecondsW = j.toString();
@@ -229,12 +217,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 				this.add(lblRestDisplay);
 				
 				if(k < 4) {	
-					try {
-						beep = new Beep();
-						beep.play();
-					} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-						e.printStackTrace();
-					}
+					beep.play();
 				}
 				
 				/* Display the seconds of rest */
