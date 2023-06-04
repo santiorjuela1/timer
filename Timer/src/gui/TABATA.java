@@ -22,7 +22,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	
 	// Attributes
 	
-	// Labels
+	// Labels main menu
 	JLabel lblFor = new JLabel("FOR");
 	JLabel lblRounds = new JLabel("ROUNDS");
 	JLabel lblWork = new JLabel("WORK");
@@ -30,6 +30,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	JLabel lblRest = new JLabel("REST");
 	JLabel lblSecondsRest = new JLabel("SECONDS");
 	
+	// Labels to be displayed after the first removal of components 
 	JLabel lblRoundsDisplay = new JLabel();
 	JLabel lblWorkDisplay = new JLabel();
 	JLabel lblSecondsRestDisplay = new JLabel();
@@ -51,8 +52,6 @@ public class TABATA extends GeneralWindow implements Runnable{
 	Integer intSecondsRest;
 	
 	Thread actualizador = new Thread(this);
-	
-	Beep beep;
 	
 	
 	public TABATA(JFrame frame) {
@@ -131,11 +130,11 @@ public class TABATA extends GeneralWindow implements Runnable{
 	public void actionPerformed(ActionEvent e) {
 		
 		// Doing/invoking the method of the superclass so it takes care 
-		if(e.getSource() == super.goBack) {
+		if(e.getSource() == super.btnGoBack) {
 			super.actionPerformed(e);
-				super.beep.clip.stop();
-				super.beep.close();
-				actualizador.stop();
+			super.actionPerformed(e);
+			super.beep.clip.stop();
+			actualizador.stop();
 		}
 		else if(e.getSource() == this.btnStart) {
 			/* We get the values from the textFields */
@@ -183,7 +182,9 @@ public class TABATA extends GeneralWindow implements Runnable{
 					
 				/* Assigning seconds to the label*/ 
 				this.strSecondsWork = j.toString();
-	            this.lblWorkDisplay.setText(strSecondsWork);
+	            SwingUtilities.invokeLater(() -> {
+		            this.lblWorkDisplay.setText(strSecondsWork);
+			        });
 	           
 				try {
 					Thread.sleep(1000);
@@ -208,7 +209,9 @@ public class TABATA extends GeneralWindow implements Runnable{
 				
 				/* Display of the seconds of rest */ 
 				this.strSecondsRest = k.toString();
-		        this.lblSecondsRestDisplay.setText(strSecondsRest);
+				 SwingUtilities.invokeLater(() -> {
+					 this.lblSecondsRestDisplay.setText(strSecondsRest);
+				        });
 		           
 				try {
 					Thread.sleep(1000);

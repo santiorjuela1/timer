@@ -13,12 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 import sounds.Beep;
 
 public class EMOM extends GeneralWindow implements Runnable{
 	
-	// JLABELS
+	// JLABELS main menu 
 	JLabel lblEvery = new JLabel("EVERY");
 	JLabel lblMinutesW = new JLabel("MINUTES");
 	JLabel lblAnd = new JLabel("AND");
@@ -50,10 +51,12 @@ public class EMOM extends GeneralWindow implements Runnable{
 	
 	JLabel lblSecondsDisplay = new JLabel();
 	JLabel lblNumbersRoundsDisplay = new JLabel();
+	JLabel lblRoundsDisplay = new JLabel();
 	
+	// LABELS AS TITLES AFTER THE FIRST REMOVAL OF COMPONENTS
 	JLabel lblWorkDisplay = new JLabel("WORK");
 	JLabel lblRestDisplay = new JLabel("REST");
-	JLabel lblRoundsDisplay = new JLabel();
+
 	
 	Thread actualizador = new Thread(this);
 
@@ -148,7 +151,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 	public void actionPerformed(ActionEvent e) {
 		
 		/*  In case user uses the goBack button the perform the superclass function*/
-		if(e.getSource() == super.goBack) {
+		if(e.getSource() == super.btnGoBack) {
 			super.actionPerformed(e);
 			super.beep.clip.stop();
 			actualizador.stop();
@@ -197,10 +200,12 @@ public class EMOM extends GeneralWindow implements Runnable{
 				}
 				
 				this.strSecondsW = j.toString();
-				this.lblSecondsDisplay.setText(strSecondsW);
+				 SwingUtilities.invokeLater(() -> {
+					 this.lblSecondsDisplay.setText(strSecondsW);
+				        });
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -222,10 +227,12 @@ public class EMOM extends GeneralWindow implements Runnable{
 				
 				/* Display the seconds of rest */
 				this.strSecondsR = k.toString();
-				this.lblSecondsDisplay.setText(strSecondsR);
+				SwingUtilities.invokeLater(() -> {
+					this.lblSecondsDisplay.setText(strSecondsR);
+				        });
 				
 				try {
-					Thread.sleep(10);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

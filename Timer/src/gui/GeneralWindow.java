@@ -21,13 +21,14 @@ import sounds.Beep;
 
 public abstract class GeneralWindow extends JFrame implements ActionListener{
 	// Attributes
-	JButton goBack;
+	JButton btnGoBack;
 	JLabel titulo;
 	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
 	JFrame mainFrame;
-	Beep beep = Beep.getInstance();
 	JLabel lblGetReady = new JLabel("GET READY!");	
 	JLabel lblSecondsReady = new JLabel();
+	Beep beep = Beep.getInstance();
+	
 
 	GeneralWindow(JFrame frame){
 		this.mainFrame = frame;
@@ -47,14 +48,14 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	titulo.setFont(new Font("MV Boli", Font.BOLD, 50));
 	titulo.setBounds(275,100,300,75);
 	
-	goBack = new JButton("<-");
-	goBack.setBounds(10, 10, 75, 50);
-	goBack.setFont(new Font("MV Boli", Font.BOLD, 40));
-	goBack.setFocusable(false);
-	goBack.setForeground(Color.white);
-	goBack.setBackground(Color.black);
-	goBack.setBorder(new LineBorder(Color.white));
-	goBack.addActionListener(this);
+	btnGoBack = new JButton("<-");
+	btnGoBack.setBounds(10, 10, 75, 50);
+	btnGoBack.setFont(new Font("MV Boli", Font.BOLD, 40));
+	btnGoBack.setFocusable(false);
+	btnGoBack.setForeground(Color.white);
+	btnGoBack.setBackground(Color.black);
+	btnGoBack.setBorder(new LineBorder(Color.white));
+	btnGoBack.addActionListener(this);
 	
 	this.setFeaturesLabel(lblGetReady);
 	this.lblGetReady.setBounds(275, 0, 200, 200);
@@ -63,14 +64,14 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	this.lblSecondsReady.setBounds(350, 100, 200, 200);
 	
 	
-	this.add(goBack);
+	this.add(btnGoBack);
 	this.add(titulo);
 	this.setVisible(true);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == goBack) {
+		if(e.getSource() == btnGoBack) {
 			this.mainFrame.setVisible(true);
 			this.dispose();
 		}
@@ -108,7 +109,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	public void removeComponents() {
 		Component[] components = getContentPane().getComponents();
         for (Component component : components) {
-            if (component != this.goBack) {
+            if (component != this.btnGoBack) {
                 getContentPane().remove(component);
             }
         }
@@ -125,7 +126,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	public void gettingReadyTimer(JLabel label) {
 		String valueLbl;
 		for(Integer i = 9; i > 0; i--) {
-			if (i < 4 && !beep.clip.isRunning()) {
+			if (i < 4) {
 		        beep.play();
 		    }
 			
