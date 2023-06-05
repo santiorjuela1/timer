@@ -23,41 +23,41 @@ public class TABATA extends GeneralWindow implements Runnable{
 	// Attributes
 	
 	// Labels main menu
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblRounds = new JLabel("ROUNDS");
-	JLabel lblWork = new JLabel("WORK");
-	JLabel lblSecondsWork = new JLabel("SECONDS");
-	JLabel lblRest = new JLabel("REST");
-	JLabel lblSecondsRest = new JLabel("SECONDS");
+	private JLabel lblFor = new JLabel("FOR");
+	private JLabel lblRounds = new JLabel("ROUNDS");
+	private JLabel lblWork = new JLabel("WORK");
+	private	JLabel lblSecondsWork = new JLabel("SECONDS");
+	private	JLabel lblRest = new JLabel("REST");
+	private	JLabel lblSecondsRest = new JLabel("SECONDS");
 	
 	// Labels to be displayed after the first removal of components 
-	JLabel lblRoundsDisplay = new JLabel();
-	JLabel lblWorkDisplay = new JLabel();
-	JLabel lblSecondsRestDisplay = new JLabel();
+	private	JLabel lblRoundsDisplay = new JLabel();
+	private	JLabel lblWorkDisplay = new JLabel();
+	private	JLabel lblSecondsRestDisplay = new JLabel();
 	
 	// TextFields
-	JTextField tfRounds = new JTextField("10");
-	JTextField tfSecondsWork = new JTextField("20");
-	JTextField tfSecondsRest = new JTextField("10");
+	private	JTextField tfRounds = new JTextField("10");
+	private	JTextField tfSecondsWork = new JTextField("20");
+	private	JTextField tfSecondsRest = new JTextField("10");
 	
 	// Buttons 
-	JButton btnStart = new JButton("START");
+	private	JButton btnStart = new JButton("START");
 	
-	String strRounds;
-	String strSecondsWork;
-	String strSecondsRest;
+	private	String strRounds;
+	private	String strSecondsWork;
+	private	String strSecondsRest;
 	
-	Integer intRounds;
-	Integer intSecondsWork;
-	Integer intSecondsRest;
+	private	Integer intRounds;
+	private	Integer intSecondsWork;
+	private	Integer intSecondsRest;
 	
-	Thread actualizador = new Thread(this);
+	private	Thread actualizador = new Thread(this);
 	
 	
 	public TABATA(JFrame frame) {
 		super(frame);
 		this.setTitle("TABATA");
-		titulo.setText("TABATA");
+		lblTitle.setText("TABATA");
 		
 		// lblFor
 		super.setFeaturesLabel(lblFor);
@@ -138,7 +138,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 		}
 		else if(e.getSource() == this.btnStart) {
 			/* We get the values from the textFields */
-			AssignValues();
+			assignValues();
 
 			/* We remove all of the components */
 			super.removeComponents();
@@ -233,7 +233,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	}
 }
 	
-	public void AssignValues() {
+	public void assignValues() {
 		this.strRounds = this.tfRounds.getText();
 		this.strSecondsRest = this.tfSecondsRest.getText();
 		this.strSecondsWork = this.tfSecondsWork.getText();

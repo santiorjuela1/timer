@@ -8,7 +8,7 @@ import javax.sound.sampled.*;
 public class Beep {
 	
 	public Clip clip;
-	File file;
+	private File file;
 	private static Beep instance;
 	
 	 private Beep() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -52,6 +52,8 @@ public class Beep {
 		        clip.setFramePosition(0);
 		    }
 	 }
+	 
+	
 }
 
 	

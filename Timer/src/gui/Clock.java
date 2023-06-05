@@ -19,18 +19,16 @@ import javax.swing.SwingUtilities;
 public class Clock extends GeneralWindow implements Runnable{
 	
 	// Attributes
-	JLabel lblTime = new JLabel();
-	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-	TimeUnit time = TimeUnit.SECONDS;
-	Long timeToSleep = 1L;
-	String strTime;
+	private JLabel lblTime = new JLabel();
+	private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+	private String strTime;
 	
 	
 	
 	Clock(JFrame mainFrame){
 		super(mainFrame);
 		this.setTitle("Clock");
-		titulo.setText("Clock");
+		lblTitle.setText("Clock");
 		
 		super.setFeaturesLabel(lblTime);
 		lblTime.setFont(new Font("MV Boli", Font.BOLD, 40));

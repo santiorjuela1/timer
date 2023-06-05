@@ -1,40 +1,33 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import sounds.Beep;
 
 
 public class AMRAP extends GeneralWindow implements Runnable{
 	
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblSeconds = new JLabel("SECONDS");
-	JLabel lblTimeToBeDisplayed = new JLabel();
-	JLabel lblDone = new JLabel("DONE");
-	JTextField tfMinutes = new JTextField();
-	JButton btnStart = new JButton("START");
-	String strMinutes;
-	Thread actualizador = new Thread(this);
+	private	JLabel lblFor = new JLabel("FOR");
+	private	JLabel lblSeconds = new JLabel("SECONDS");
+	private	JLabel lblTimeToBeDisplayed = new JLabel();
+	private	JLabel lblDone = new JLabel("DONE");
+	private	JTextField tfMinutes = new JTextField();
+	private	JButton btnStart = new JButton("START");
+	private	String strMinutes;
+	private	Thread actualizador = new Thread(this);
 	
 	
 
 	public AMRAP(JFrame frame) {
 		super(frame);
 		this.setTitle("AMRAP");
-		this.titulo.setText("AMRAP");
+		this.lblTitle.setText("AMRAP");
 		
 		// lblFor
 		super.setFeaturesLabel(lblFor);

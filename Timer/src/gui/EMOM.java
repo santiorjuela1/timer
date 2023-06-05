@@ -20,50 +20,50 @@ import sounds.Beep;
 public class EMOM extends GeneralWindow implements Runnable{
 	
 	// JLABELS main menu 
-	JLabel lblEvery = new JLabel("EVERY");
-	JLabel lblMinutesW = new JLabel("MINUTES");
-	JLabel lblAnd = new JLabel("AND");
-	JLabel lblSecondsW = new JLabel("SECONDS");
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblRoundsW = new JLabel("ROUNDS");
-	JLabel lblRest = new JLabel("REST");
-	JLabel lblSecondsR = new JLabel("SECONDS");
+	private	JLabel lblEvery = new JLabel("EVERY");
+	private	JLabel lblMinutesW = new JLabel("MINUTES");
+	private	JLabel lblAnd = new JLabel("AND");
+	private	JLabel lblSecondsW = new JLabel("SECONDS");
+	private	JLabel lblFor = new JLabel("FOR");
+	private	JLabel lblRoundsW = new JLabel("ROUNDS");
+	private	JLabel lblRest = new JLabel("REST");
+	private	JLabel lblSecondsR = new JLabel("SECONDS");
 	
 	// TEXTFIELDS
-	JTextField tfMinutesW = new JTextField("1");
-	JTextField tfSecondsW = new JTextField("20");
-	JTextField tfRoundsW = new JTextField("3");
-	JTextField tfSecondsR= new JTextField("20");
+	private	JTextField tfMinutesW = new JTextField("1");
+	private	JTextField tfSecondsW = new JTextField("20");
+	private	JTextField tfRoundsW = new JTextField("3");
+	private	JTextField tfSecondsR= new JTextField("20");
 	
 	// BUTTON
-	JButton btnStart = new JButton("START");
-	
-	String strMinutesW;
-	String strSecondsW;
-	String strRoundsW;
-	String strSecondsR;
-	
-	Integer intMinutesW;
-	Integer intSecondsW;
-	Integer intRoundsW;
-	Integer intSecondsR;
-	Integer intTotalSeconds;
-	
-	JLabel lblSecondsDisplay = new JLabel();
-	JLabel lblNumbersRoundsDisplay = new JLabel();
-	JLabel lblRoundsDisplay = new JLabel();
+	private	JButton btnStart = new JButton("START");
+		
+	private	String strMinutesW;
+	private	String strSecondsW;
+	private	String strRoundsW;
+	private	String strSecondsR;
+		
+	private	Integer intMinutesW;
+	private	Integer intSecondsW;
+	private	Integer intRoundsW;
+	private	Integer intSecondsR;
+	private Integer intTotalSeconds;
+		
+	private	JLabel lblSecondsDisplay = new JLabel();
+	private	JLabel lblNumbersRoundsDisplay = new JLabel();
+	private	JLabel lblRoundsDisplay = new JLabel();
 	
 	// LABELS AS TITLES AFTER THE FIRST REMOVAL OF COMPONENTS
-	JLabel lblWorkDisplay = new JLabel("WORK");
-	JLabel lblRestDisplay = new JLabel("REST");
+	private	JLabel lblWorkDisplay = new JLabel("WORK");
+	private	JLabel lblRestDisplay = new JLabel("REST");
 
 	
-	Thread actualizador = new Thread(this);
+	private	Thread actualizador = new Thread(this);
 
 	public EMOM(JFrame frame){
 		super(frame);
-		this.setTitle("EMOW");
-		titulo.setText("EMOW");
+		this.setTitle("EMOM");
+		lblTitle.setText("EMOM");
 		
 		// lblEvery
 		super.setFeaturesLabel(lblEvery);

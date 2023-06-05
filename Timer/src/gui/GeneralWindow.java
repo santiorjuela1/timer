@@ -21,13 +21,13 @@ import sounds.Beep;
 
 public abstract class GeneralWindow extends JFrame implements ActionListener{
 	// Attributes
-	JButton btnGoBack;
-	JLabel titulo;
-	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
-	JFrame mainFrame;
-	JLabel lblGetReady = new JLabel("GET READY!");	
-	JLabel lblSecondsReady = new JLabel();
-	Beep beep = Beep.getInstance();
+	protected JButton btnGoBack;
+	protected JLabel lblTitle;
+	protected ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
+	protected JFrame mainFrame;
+	protected JLabel lblGetReady = new JLabel("GET READY!");	
+	protected JLabel lblSecondsReady = new JLabel();
+	protected Beep beep = Beep.getInstance();
 	
 
 	GeneralWindow(JFrame frame){
@@ -43,10 +43,10 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	this.getContentPane().setBackground(Color.black);
 	this.setResizable(false);
 	
-	titulo = new JLabel();
-	titulo.setForeground(Color.white);
-	titulo.setFont(new Font("MV Boli", Font.BOLD, 50));
-	titulo.setBounds(275,100,300,75);
+	lblTitle = new JLabel();
+	lblTitle.setForeground(Color.white);
+	lblTitle.setFont(new Font("MV Boli", Font.BOLD, 50));
+	lblTitle.setBounds(275,100,300,75);
 	
 	btnGoBack = new JButton("<-");
 	btnGoBack.setBounds(10, 10, 75, 50);
@@ -65,7 +65,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 	
 	
 	this.add(btnGoBack);
-	this.add(titulo);
+	this.add(lblTitle);
 	this.setVisible(true);
 	}
 	
