@@ -23,36 +23,37 @@ public class TABATA extends GeneralWindow implements Runnable{
 	// Attributes
 	
 	// Labels
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblRounds = new JLabel("ROUNDS");
-	JLabel lblWork = new JLabel("WORK");
-	JLabel lblSecondsWork = new JLabel("SECONDS");
-	JLabel lblRest = new JLabel("REST");
-	JLabel lblSecondsRest = new JLabel("SECONDS");
-	
-	JLabel lblRoundsDisplay = new JLabel();
-	JLabel lblWorkDisplay = new JLabel();
-	JLabel lblSecondsRestDisplay = new JLabel();
+	private	JLabel lblFor = new JLabel("FOR");
+	private	JLabel lblRounds = new JLabel("ROUNDS");
+	private	JLabel lblWork = new JLabel("WORK");
+	private	JLabel lblSecondsWork = new JLabel("SECONDS");
+	private	JLabel lblRest = new JLabel("REST");
+	private	JLabel lblSecondsRest = new JLabel("SECONDS");
+	private JLabel lblInvalid = new JLabel();
+		
+	private	JLabel lblRoundsDisplay = new JLabel();
+	private	JLabel lblWorkDisplay = new JLabel();
+	private	JLabel lblSecondsRestDisplay = new JLabel();
 	
 	// TextFields
-	JTextField tfRounds = new JTextField("10");
-	JTextField tfSecondsWork = new JTextField("20");
-	JTextField tfSecondsRest = new JTextField("10");
-	
+	private	JTextField tfRounds = new JTextField("10");
+	private	JTextField tfSecondsWork = new JTextField("20");
+	private	JTextField tfSecondsRest = new JTextField("10");
+		
 	// Buttons 
-	JButton btnStart = new JButton("START");
-	
-	String strRounds;
-	String strSecondsWork;
-	String strSecondsRest;
-	
-	Integer intRounds;
-	Integer intSecondsWork;
-	Integer intSecondsRest;
-	
-	Thread actualizador = new Thread(this);
-	
-	Beep beep;
+	private	JButton btnStart = new JButton("START");
+		
+	private	String strRounds;
+	private	String strSecondsWork;
+	private	String strSecondsRest;
+		
+	private	Integer intRounds;
+	private	Integer intSecondsWork;
+	private	Integer intSecondsRest;
+		
+	private	Thread actualizador = new Thread(this);
+		
+	private	Beep beep;
 	
 	
 	public TABATA(JFrame frame) {
@@ -100,6 +101,10 @@ public class TABATA extends GeneralWindow implements Runnable{
 		super.setFeaturesButton(btnStart);
 		btnStart.setBounds(285,550, 150, 55);
 		
+		// lblInvalid
+		super.setFeaturesLabel(lblInvalid);
+		lblInvalid.setBounds(285, 650, 150, 55);
+		
 		// lblRoundDisplay
 		super.setFeaturesSpecialLabels(lblRoundsDisplay);
 		this.lblRoundsDisplay.setBounds(150, 100, 150, 150);
@@ -112,7 +117,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 		super.setFeaturesSpecialLabels(lblSecondsRestDisplay);
 		this.lblSecondsRestDisplay.setBounds(350, 100, 150, 150);
 		
-		
+		this.add(lblInvalid);
 		this.add(btnStart);
 		this.add(lblSecondsRest);
 		this.add(tfSecondsRest);
@@ -145,17 +150,27 @@ public class TABATA extends GeneralWindow implements Runnable{
 		}
 		else if(e.getSource() == this.btnStart) {
 			/* We get the values from the textFields */
-			AssignValues();
-
-			/* We remove all of the components */
-			super.removeComponents();
+			this.strRounds = this.tfRounds.getText();
+			this.strSecondsRest = this.tfSecondsRest.getText();
+			this.strSecondsWork = this.tfSecondsWork.getText();
 			
-			/* We add the labels related to the getready */
-			this.add(super.lblSecondsReady);
-			this.add(super.lblGetReady);	
-			
-			/* we start the run method */
-			actualizador.start();
+			if(this.strRounds.isBlank() || this.strSecondsRest.isBlank() || this.strSecondsWork.isBlank()) {
+				this.lblInvalid.setText("INVALID");
+			}
+			else {
+				/* We get the values from the textFields */
+				assignValues();
+	
+				/* We remove all of the components */
+				super.removeComponents();
+				
+				/* We add the labels related to the getready */
+				this.add(super.lblSecondsReady);
+				this.add(super.lblGetReady);	
+				
+				/* we start the run method */
+				actualizador.start();
+			}
 		}
 	}
 
@@ -181,9 +196,9 @@ public class TABATA extends GeneralWindow implements Runnable{
 			for(Integer j = this.intSecondsWork; j > 0; j--) {
 				this.lblWork.setText("WORK");
 				this.add(lblWork);
-				this.lblWork.setBounds(350, 0, 150, 150);
+				this.lblWork.setBounds(330, 0, 150, 150);
 				
-				if(j < 4 && j != 0) {	
+				if(j < 4) {	
 					try {
 						beep = new Beep();
 						beep.play();
@@ -197,7 +212,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 	            this.lblWorkDisplay.setText(strSecondsWork);
 	           
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	
@@ -213,7 +228,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 				this.add(lblRest);
 				
 				/* Setting the sounds when the lable is lower than 4 */
-				if(k < 4 && k != 0) {
+				if(k < 4) {
 					try {
 						beep = new Beep();
 						beep.play();
@@ -227,7 +242,7 @@ public class TABATA extends GeneralWindow implements Runnable{
 		        this.lblSecondsRestDisplay.setText(strSecondsRest);
 		           
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}	
@@ -242,15 +257,11 @@ public class TABATA extends GeneralWindow implements Runnable{
 					lblDone.setBounds(210, 200, 300,300);
 					lblDone.setFont(new Font("MV Boli", Font.BOLD, 100));
 					this.add(lblDone);
-					}
-	}
+				}
+		}
 }
 	
-	public void AssignValues() {
-		this.strRounds = this.tfRounds.getText();
-		this.strSecondsRest = this.tfSecondsRest.getText();
-		this.strSecondsWork = this.tfSecondsWork.getText();
-		
+	public void assignValues() {		
 		this.intRounds = Integer.parseInt(strRounds);
 		this.intSecondsRest = Integer.parseInt(strSecondsRest);
 		this.intSecondsWork = Integer.parseInt(strSecondsWork);

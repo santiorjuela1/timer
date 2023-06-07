@@ -19,43 +19,44 @@ import sounds.Beep;
 public class EMOM extends GeneralWindow implements Runnable{
 	
 	// JLABELS
-	JLabel lblEvery = new JLabel("EVERY");
-	JLabel lblMinutesW = new JLabel("MINUTES");
-	JLabel lblAnd = new JLabel("AND");
-	JLabel lblSecondsW = new JLabel("SECONDS");
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblRoundsW = new JLabel("ROUNDS");
-	JLabel lblRest = new JLabel("REST");
-	JLabel lblSecondsR = new JLabel("SECONDS");
+	private	JLabel lblEvery = new JLabel("EVERY");
+	private	JLabel lblMinutesW = new JLabel("MINUTES");
+	private	JLabel lblAnd = new JLabel("AND");
+	private	JLabel lblSecondsW = new JLabel("SECONDS");
+	private	JLabel lblFor = new JLabel("FOR");
+	private	JLabel lblRoundsW = new JLabel("ROUNDS");
+	private	JLabel lblRest = new JLabel("REST");
+	private	JLabel lblSecondsR = new JLabel("SECONDS");
+	private JLabel lblInvalid = new JLabel();
 	
 	// TEXTFIELDS
-	JTextField tfMinutesW = new JTextField("1");
-	JTextField tfSecondsW = new JTextField("20");
-	JTextField tfRoundsW = new JTextField("3");
-	JTextField tfSecondsR= new JTextField("20");
-	
+	private	JTextField tfMinutesW = new JTextField("1");
+	private	JTextField tfSecondsW = new JTextField("20");
+	private	JTextField tfRoundsW = new JTextField("3");
+	private	JTextField tfSecondsR= new JTextField("20");
+		
 	// BUTTON
-	JButton btnStart = new JButton("START");
-	
-	String strMinutesW;
-	String strSecondsW;
-	String strRoundsW;
-	String strSecondsR;
-	
-	Integer intMinutesW;
-	Integer intSecondsW;
-	Integer intRoundsW;
-	Integer intSecondsR;
-	Integer intTotalSeconds;
-	
-	JLabel lblSecondsDisplay = new JLabel();
-	JLabel lblNumbersRoundsDisplay = new JLabel();
-	
-	JLabel lblWorkDisplay = new JLabel("WORK");
-	JLabel lblRestDisplay = new JLabel("REST");
-	JLabel lblRoundsDisplay = new JLabel();
-	
-	Thread actualizador = new Thread(this);
+	private	JButton btnStart = new JButton("START");
+		
+	private	String strMinutesW;
+	private	String strSecondsW;
+	private String strRoundsW;
+	private	String strSecondsR;
+		
+	private	Integer intMinutesW;
+	private	Integer intSecondsW;
+	private	Integer intRoundsW;
+	private	Integer intSecondsR;
+	private	Integer intTotalSeconds;
+		
+	private	JLabel lblSecondsDisplay = new JLabel();
+	private	JLabel lblNumbersRoundsDisplay = new JLabel();
+		
+	private	JLabel lblWorkDisplay = new JLabel("WORK");
+	private	JLabel lblRestDisplay = new JLabel("REST");
+	private	JLabel lblRoundsDisplay = new JLabel();
+		
+	private	Thread actualizador = new Thread(this);
 
 	public EMOM(JFrame frame){
 		super(frame);
@@ -122,12 +123,13 @@ public class EMOM extends GeneralWindow implements Runnable{
 		super.setFeaturesLabel(lblSecondsDisplay);
 		this.lblSecondsDisplay.setBounds(350, 100, 150, 150);
 		
-	//	super.setFeaturesLabel(lblNumbersRoundsDisplay);
-		//this.lblNumbersRoundsDisplay.setBounds(100, 100, 150, 150);
-		
 		super.setFeaturesSpecialLabels(lblRoundsDisplay);
 		this.lblRoundsDisplay.setBounds(150, 100, 150, 150);
 		
+		super.setFeaturesLabel(lblInvalid);
+		this.lblInvalid.setBounds(285, 650, 150, 55 );
+		
+		this.add(lblInvalid);
 		this.add(lblEvery);
 		this.add(tfMinutesW);
 		this.add(lblMinutesW);
@@ -162,14 +164,24 @@ public class EMOM extends GeneralWindow implements Runnable{
 		}
 		else if(e.getSource() == this.btnStart){
 			
-			this.assignValues();
+			this.strRoundsW = this.tfRoundsW.getText();
+			this.strMinutesW = this.tfMinutesW.getText();
+			this.strSecondsW = this.tfSecondsW.getText();
+			this.strSecondsR = this.tfSecondsR.getText();
 			
-			super.removeComponents();
+			if(this.strRoundsW.isBlank() || this.strMinutesW.isBlank() || this.strSecondsW.isEmpty() || this.strSecondsR.isEmpty()) {
+				this.lblInvalid.setText("INVALID");
+			}else {
 			
-			this.add(super.lblGetReady);
-			this.add(super.lblSecondsReady);
-			
-			actualizador.start();
+				this.assignValues();
+				
+				super.removeComponents();
+				
+				this.add(super.lblGetReady);
+				this.add(super.lblSecondsReady);
+				
+				actualizador.start();
+			}
 		}
 	}
 
@@ -212,7 +224,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 				this.lblSecondsDisplay.setText(strSecondsW);
 				
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -242,7 +254,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 				this.lblSecondsDisplay.setText(strSecondsR);
 				
 				try {
-					Thread.sleep(10);
+					Thread.sleep(1000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -265,13 +277,7 @@ public class EMOM extends GeneralWindow implements Runnable{
 		
 	
 	
-	public void assignValues() {
-		this.strRoundsW = this.tfRoundsW.getText();
-		this.strMinutesW = this.tfMinutesW.getText();
-		this.strSecondsW = this.tfSecondsW.getText();
-		this.strSecondsR = this.tfSecondsR.getText();
-		
-		
+	public void assignValues() {		
 		this.intRoundsW = Integer.parseInt(strRoundsW);
 		this.intMinutesW = Integer.parseInt(strMinutesW);
 		this.intSecondsW = Integer.parseInt(strSecondsW);

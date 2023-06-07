@@ -16,20 +16,19 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import sounds.Beep;
-import threads.MyThread;
+
 
 public class AMRAP extends GeneralWindow implements Runnable{
 	
-	JLabel lblFor = new JLabel("FOR");
-	JLabel lblSeconds = new JLabel("SECONDS");
-	JLabel lblTime = new JLabel();
-	JLabel lblDone = new JLabel("DONE");
-	JTextField tfMinutes = new JTextField();
-	JButton btnStart = new JButton("START");
-	String strMinutes;
-	Thread actualizador = new Thread(this);
-	//MyThread thread = new MyThread();
-	
+	private	JLabel lblFor = new JLabel("FOR");
+	private	JLabel lblSeconds = new JLabel("SECONDS");
+	private	JLabel lblTimeToBeDisplayed = new JLabel();
+	private JLabel lblDone = new JLabel("DONE");
+	private	JTextField tfMinutes = new JTextField();
+	private	JButton btnStart = new JButton("START");
+	private	String strMinutes;
+	private	Thread actualizador = new Thread(this);
+
 
 	public AMRAP(JFrame frame) {
 		super(frame);
@@ -52,11 +51,11 @@ public class AMRAP extends GeneralWindow implements Runnable{
 		super.setFeaturesButton(btnStart);
 		this.btnStart.setBounds(285, 400, 150, 55);
 		
-		// lblTime
+		// lblDone
 		this.lblDone.setBounds(300, 300, 250, 250);
 		
 
-		this.add(lblTime);
+		this.add(lblTimeToBeDisplayed);
 		this.add(lblFor);
 		this.add(tfMinutes);
 		this.add(lblSeconds);
@@ -84,8 +83,8 @@ public class AMRAP extends GeneralWindow implements Runnable{
 			this.strMinutes = tfMinutes.getText();
 			
 			if(this.strMinutes.isEmpty()) {
-				this.lblTime.setBounds(300, 500,200,55);
-				this.lblTime.setText("INVALID");
+				this.lblTimeToBeDisplayed.setBounds(340, 500,200,55);
+				this.lblTimeToBeDisplayed.setText("INVALID");
 			}
 			else {
 				
@@ -116,16 +115,16 @@ public class AMRAP extends GeneralWindow implements Runnable{
 		
 		while(segundos > 0) {
 			
-			super.setFeaturesLabel(lblTime);
-			this.lblTime.setBounds(300, 100, 300, 300);
-			this.lblTime.setSize(500,500);
-			this.lblTime.setFont(new Font("MV Boli", Font.BOLD, 200));
-			this.add(lblTime);
+			super.setFeaturesLabel(lblTimeToBeDisplayed);
+			this.lblTimeToBeDisplayed.setBounds(275, 100, 300, 300);
+			this.lblTimeToBeDisplayed.setSize(500,500);
+			this.lblTimeToBeDisplayed.setFont(new Font("MV Boli", Font.BOLD, 200));
+			this.add(lblTimeToBeDisplayed);
 
 				
 			this.strMinutes = segundos.toString();
 			 SwingUtilities.invokeLater(() -> {
-		            this.lblTime.setText(strMinutes);
+		            this.lblTimeToBeDisplayed.setText(strMinutes);
 		        });
            
 			try {
@@ -137,9 +136,9 @@ public class AMRAP extends GeneralWindow implements Runnable{
 			segundos--;
 			if(segundos <= 0) {
 				 SwingUtilities.invokeLater(() -> {
-					 this.lblTime.setBounds(200, 100, 300, 300);
-					 this.lblTime.setFont(new Font("MV Boli", Font.BOLD, 100));
-					 	this.lblTime.setText("DONE");
+					 this.lblTimeToBeDisplayed.setBounds(200, 100, 300, 300);
+					 this.lblTimeToBeDisplayed.setFont(new Font("MV Boli", Font.BOLD, 100));
+					 	this.lblTimeToBeDisplayed.setText("DONE");
 			        });
 			}
 			else if (segundos <= 3) {

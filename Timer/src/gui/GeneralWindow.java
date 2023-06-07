@@ -7,6 +7,10 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -21,13 +25,13 @@ import sounds.Beep;
 
 public abstract class GeneralWindow extends JFrame implements ActionListener{
 	// Attributes
-	JButton goBack;
-	JLabel titulo;
-	ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
-	JFrame mainFrame;
-	Beep beep;
-	JLabel lblGetReady = new JLabel("GET READY!");	
-	JLabel lblSecondsReady = new JLabel();
+	protected JButton goBack;
+	protected JLabel titulo;
+	protected ImageIcon leftArrow = new ImageIcon("left-white-arrow.png");
+	protected JFrame mainFrame;
+	protected Beep beep;
+	protected JLabel lblGetReady = new JLabel("GET READY!");	
+	protected JLabel lblSecondsReady = new JLabel();
 
 	GeneralWindow(JFrame frame){
 		this.mainFrame = frame;
@@ -81,7 +85,6 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 		label.setFont(new Font("MV Boli", Font.BOLD, 30));
 		label.setFocusable(false);
 		label.setForeground(Color.white);
-		//label.setBorder(new LineBorder(Color.black));
 	}
 	
 	public void setFeaturesTextField (JTextField field) {
@@ -105,15 +108,24 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 		button.addActionListener(this);
 	}
 	
+	
 	public void removeComponents() {
-		Component[] components = getContentPane().getComponents();
-        for (Component component : components) {
-            if (component != this.goBack) {
-                getContentPane().remove(component);
-            }
-        }
-        getContentPane().setBackground(getContentPane().getBackground());
-        repaint();
+		Component [] components = getContentPane().getComponents();
+		
+		List<Component> listOfComponents = new ArrayList<>(Arrays.asList(components));
+		
+		listOfComponents.remove(this.goBack);
+		
+		Iterator<Component> iterator = listOfComponents.iterator();
+		
+		while(iterator.hasNext()) {
+			Component nextComponent = iterator.next();
+			getContentPane().remove(nextComponent);
+			iterator.remove();
+		}
+	    getContentPane().setBackground(getContentPane().getBackground());
+	    repaint();
+		
 	}
 	
 	public void setFeaturesSpecialLabels(JLabel label) {
@@ -137,7 +149,7 @@ public abstract class GeneralWindow extends JFrame implements ActionListener{
 			label.setText(valueLbl);
 			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
