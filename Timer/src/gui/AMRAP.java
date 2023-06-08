@@ -1,14 +1,11 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +64,6 @@ public class AMRAP extends GeneralWindow implements Runnable{
 		try {
 			beep = new Beep();
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -130,7 +126,6 @@ public class AMRAP extends GeneralWindow implements Runnable{
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			segundos--;

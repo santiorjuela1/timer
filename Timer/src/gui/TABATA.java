@@ -1,20 +1,16 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 
 import sounds.Beep;
 
@@ -138,7 +134,6 @@ public class TABATA extends GeneralWindow implements Runnable{
 		try {
 			beep = new Beep();
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
